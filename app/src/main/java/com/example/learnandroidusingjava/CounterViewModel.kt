@@ -1,17 +1,18 @@
 package com.example.learnandroidusingjava
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class CounterViewModel: ViewModel() {
+class CounterViewModel : ViewModel() {
 
-    private var counter = 0;
+    var counter = MutableLiveData<Int>()
 
-    fun incrementCounter(){
-        counter++
+    init {
+        counter.value = 0
     }
 
-    fun getCurrentCounter() : Int{
-        return counter
+    // This method no longer takes a View parameter
+    fun incrementCounter() {
+        counter.value = counter.value?.plus(1)
     }
-
 }
